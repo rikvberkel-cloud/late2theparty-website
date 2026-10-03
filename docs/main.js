@@ -45,35 +45,6 @@
   }
 
   /* ------------------------------------------
-     2. PARALLAX SCROLLING
-     ------------------------------------------ */
-  var parallaxSections = document.querySelectorAll('[data-parallax]');
-
-  if (parallaxSections.length > 0 && !isTouch && !prefersReducedMotion) {
-    var ticking = false;
-
-    function updateParallax() {
-      var scrollY = window.scrollY;
-      parallaxSections.forEach(function (section) {
-        var speed = parseFloat(section.getAttribute('data-parallax'));
-        var offset = (scrollY - section.offsetTop) * speed;
-        var content = section.querySelector('.hero__content, .container');
-        if (content) {
-          content.style.transform = 'translateY(' + offset + 'px)';
-        }
-      });
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  /* ------------------------------------------
      3. SKILL TREE SCROLL ANIMATION
      ------------------------------------------ */
   var skillTree = document.querySelector('.skill-tree--animate');
