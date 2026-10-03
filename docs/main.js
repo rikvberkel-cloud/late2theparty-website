@@ -1,114 +1,83 @@
 /* ============================================
-   R-010 — main.js
+   all-electric · main.js
+   Beweging volgt het design system: alleen korte overgangen van kleur,
+   gloed en schaduw. Geen parallax, geen fades bij laden.
    ============================================ */
 
 (function () {
   'use strict';
 
-  /* JavaScript draait, dus animaties mogen aan. Zonder deze klasse blijft
-     alle inhoud gewoon zichtbaar in plaats van op opacity 0 te hangen. */
   document.documentElement.classList.add('js');
 
   /* ------------------------------------------
-     1. CURSOR GLOW (desktop only)
+     1. STOPLICHTSCHEMA: lampjes aan bij scrollen
+     De vakken staan zonder JavaScript gewoon aan.
      ------------------------------------------ */
-  var cursorGlow = document.getElementById('cursorGlow');
-  var isTouch = window.matchMedia('(hover: none)').matches;
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var skill = document.querySelector('.ae-skill--animate');
 
-  if (cursorGlow && !isTouch && !prefersReducedMotion) {
-    var glowX = 0, glowY = 0, currentX = 0, currentY = 0;
-    var glowActive = false;
-
-    document.addEventListener('mousemove', function (e) {
-      glowX = e.clientX;
-      glowY = e.clientY;
-      if (!glowActive) {
-        glowActive = true;
-        cursorGlow.classList.add('cursor-glow--visible');
-        updateGlow();
-      }
-    });
-
-    document.addEventListener('mouseleave', function () {
-      glowActive = false;
-      cursorGlow.classList.remove('cursor-glow--visible');
-    });
-
-    function updateGlow() {
-      if (!glowActive) return;
-      currentX += (glowX - currentX) * 0.15;
-      currentY += (glowY - currentY) * 0.15;
-      cursorGlow.style.transform = 'translate(' + (currentX - 160) + 'px,' + (currentY - 160) + 'px)';
-      requestAnimationFrame(updateGlow);
-    }
-  }
-
-  /* ------------------------------------------
-     3. SKILL TREE SCROLL ANIMATION
-     ------------------------------------------ */
-  var skillTree = document.querySelector('.skill-tree--animate');
-
-  if (skillTree && 'IntersectionObserver' in window) {
+  if (skill && 'IntersectionObserver' in window) {
     var skillObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('skill-tree--visible');
+          entry.target.classList.add('is-on');
           skillObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3 });
-
-    skillObserver.observe(skillTree);
-  } else if (skillTree) {
-    skillTree.classList.add('skill-tree--visible');
+    }, { threshold: 0.4 });
+    skillObserver.observe(skill);
+  } else if (skill) {
+    skill.classList.add('is-on');
   }
 
   /* ------------------------------------------
-     4. FADE-IN ON SCROLL (IntersectionObserver)
+     2. EERSTVOLGEND OPTREDEN IN DE HERO
+     Eén bron: de bovenste rij onder Komend in de agenda.
      ------------------------------------------ */
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in--visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+  var heroNext = document.getElementById('heroNext');
+  var eerste = document.querySelector('#paneel-komend .ae-agenda__row');
 
-    document.querySelectorAll('.fade-in').forEach(function (el) {
-      observer.observe(el);
-    });
-  } else {
-    document.querySelectorAll('.fade-in').forEach(function (el) {
-      el.classList.add('fade-in--visible');
-    });
+  if (heroNext && eerste) {
+    var datum = eerste.querySelector('.ae-agenda__date');
+    var naam = eerste.querySelector('.ae-agenda__name');
+    var plek = eerste.querySelector('.ae-agenda__loc');
+
+    function deel(cls, tekst) {
+      var s = document.createElement('span');
+      s.className = cls;
+      s.textContent = tekst;
+      return s;
+    }
+
+    heroNext.appendChild(deel('ae-hero__next-k', 'Komend'));
+    if (datum) heroNext.appendChild(deel('ae-hero__next-d', datum.textContent.trim()));
+    if (naam) heroNext.appendChild(deel('ae-hero__next-n', naam.textContent.trim()));
+    if (plek) {
+      var l = document.createElement('span');
+      l.className = 'ae-hero__next-l';
+      l.innerHTML = plek.innerHTML;
+      heroNext.appendChild(l);
+    }
+    heroNext.hidden = false;
   }
 
   /* ------------------------------------------
-     5. SCROLL-SPY (actieve nav-link markeren)
+     3. SCROLL-SPY: actieve link in de navigatie
      ------------------------------------------ */
-  var navLinks = document.querySelectorAll('.site-nav__link');
+  var navLinks = document.querySelectorAll('.ae-nav__link[href^="#"]');
 
   if (navLinks.length && 'IntersectionObserver' in window) {
     var spyTargets = [];
     navLinks.forEach(function (link) {
-      var href = link.getAttribute('href') || '';
-      var hash = href.indexOf('#') === -1 ? '' : href.slice(href.indexOf('#') + 1);
-      var target = hash ? document.getElementById(hash) : null;
+      var target = document.getElementById(link.getAttribute('href').slice(1));
       if (target) spyTargets.push(target);
     });
 
-    function setActive(id) {
-      navLinks.forEach(function (link) {
-        link.classList.toggle('site-nav__link--active', link.getAttribute('href') === '#' + id);
-      });
-    }
-
     var spyObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) setActive(entry.target.id);
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (link) {
+          link.classList.toggle('is-active', link.getAttribute('href') === '#' + entry.target.id);
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
@@ -116,164 +85,95 @@
   }
 
   /* ------------------------------------------
-     6. AGENDA TABBLADEN
+     4. AGENDA-TABS (klik en pijltjestoetsen)
      ------------------------------------------ */
-  var agendaTabs = document.querySelectorAll('.agenda-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.ae-tab[data-paneel]'));
 
-  if (agendaTabs.length) {
-    var tabsArray = Array.prototype.slice.call(agendaTabs);
-
-    function activeerTab(tab, verplaatsFocus) {
-      var doel = tab.getAttribute('data-paneel');
-
-      tabsArray.forEach(function (t) {
-        var actief = t === tab;
-        t.classList.toggle('agenda-tab--on', actief);
-        t.setAttribute('aria-selected', actief ? 'true' : 'false');
-        t.tabIndex = actief ? 0 : -1;
-      });
-
-      document.querySelectorAll('.agenda-paneel').forEach(function (paneel) {
-        paneel.hidden = paneel.id !== 'paneel-' + doel;
-      });
-
-      if (verplaatsFocus) tab.focus();
-    }
-
-    tabsArray.forEach(function (tab, index) {
-      /* Roving tabindex: alleen de actieve tab is met Tab bereikbaar,
-         binnen de tablist navigeer je met de pijltjestoetsen. */
-      tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
-
-      tab.addEventListener('click', function () {
-        activeerTab(tab, false);
-      });
-
-      tab.addEventListener('keydown', function (e) {
-        var nieuw = null;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-          nieuw = tabsArray[(index + 1) % tabsArray.length];
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-          nieuw = tabsArray[(index - 1 + tabsArray.length) % tabsArray.length];
-        } else if (e.key === 'Home') {
-          nieuw = tabsArray[0];
-        } else if (e.key === 'End') {
-          nieuw = tabsArray[tabsArray.length - 1];
-        }
-        if (nieuw) {
-          e.preventDefault();
-          activeerTab(nieuw, true);
-        }
-      });
+  function activeerTab(tab, verplaatsFocus) {
+    tabs.forEach(function (t) {
+      var actief = t === tab;
+      t.setAttribute('aria-selected', actief ? 'true' : 'false');
+      t.tabIndex = actief ? 0 : -1;
     });
+    document.querySelectorAll('.agenda-paneel').forEach(function (paneel) {
+      paneel.hidden = paneel.id !== 'paneel-' + tab.getAttribute('data-paneel');
+    });
+    if (verplaatsFocus) tab.focus();
   }
+
+  tabs.forEach(function (tab, index) {
+    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    tab.addEventListener('click', function () { activeerTab(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var nieuw = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nieuw = tabs[(index + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nieuw = tabs[(index - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') nieuw = tabs[0];
+      else if (e.key === 'End') nieuw = tabs[tabs.length - 1];
+      if (nieuw) {
+        e.preventDefault();
+        activeerTab(nieuw, true);
+      }
+    });
+  });
 
   /* ------------------------------------------
-     7. MOBIELE NAV
-     ------------------------------------------ */
-  var nav = document.getElementById('siteNav') || document.querySelector('.site-nav');
-  var navToggle = document.getElementById('navToggle');
-  var navLinksBox = document.getElementById('siteNavLinks');
-
-  function setNavOpen(open) {
-    if (!nav || !navToggle) return;
-    nav.classList.toggle('is-open', open);
-    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    navToggle.textContent = open ? 'Sluit' : 'Menu';
-  }
-
-  if (navToggle && nav) {
-    navToggle.addEventListener('click', function () {
-      setNavOpen(!nav.classList.contains('is-open'));
-    });
-    if (navLinksBox) {
-      navLinksBox.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () { setNavOpen(false); });
-      });
-    }
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setNavOpen(false);
-    });
-  }
-
-  /* ------------------------------------------
-     8. SPOTIFY: desktop meteen, mobiel na tap
+     5. SPOTIFY: desktop meteen, mobiel na tik
      ------------------------------------------ */
   function mountSpotify(box, autoplay) {
-    if (!box || box.classList.contains('spotify-embed--on')) return;
+    if (!box || box.classList.contains('is-loaded')) return;
     var src = box.getAttribute('data-spotify');
-    var title = box.getAttribute('data-title') || 'Spotify';
     if (!src) return;
-    if (autoplay) {
-      src += (src.indexOf('?') >= 0 ? '&' : '?') + 'autoplay=1';
-    }
+    if (autoplay) src += (src.indexOf('?') >= 0 ? '&' : '?') + 'autoplay=1';
     var iframe = document.createElement('iframe');
     iframe.src = src;
     iframe.width = '100%';
     iframe.height = '152';
     iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
     iframe.setAttribute('loading', 'lazy');
-    iframe.title = title;
-    iframe.style.borderRadius = '12px';
-    var playBtn = box.querySelector('.spotify-embed__play');
-    if (playBtn) playBtn.remove();
+    iframe.title = box.getAttribute('data-title') || 'Spotify';
+    var knop = box.querySelector('.listen-card__play');
+    if (knop) knop.remove();
     box.appendChild(iframe);
-    box.classList.add('spotify-embed--on');
+    box.classList.add('is-loaded');
   }
 
-  var compactSpotify = window.matchMedia('(max-width: 640px)');
+  var compact = window.matchMedia('(max-width: 640px)');
 
   function wireSpotify() {
-    var compact = compactSpotify.matches;
-    document.querySelectorAll('.spotify-embed[data-spotify]').forEach(function (box) {
-      if (!compact) {
+    document.querySelectorAll('.listen-card[data-spotify]').forEach(function (box) {
+      if (!compact.matches) {
         mountSpotify(box);
         return;
       }
-      var playBtn = box.querySelector('.spotify-embed__play');
-      if (playBtn && !playBtn.getAttribute('data-wired')) {
-        playBtn.setAttribute('data-wired', '1');
-        playBtn.addEventListener('click', function () { mountSpotify(box, true); });
+      var knop = box.querySelector('.listen-card__play');
+      if (knop && !knop.getAttribute('data-wired')) {
+        knop.setAttribute('data-wired', '1');
+        knop.addEventListener('click', function () { mountSpotify(box, true); });
       }
     });
   }
 
   wireSpotify();
-  if (compactSpotify.addEventListener) {
-    compactSpotify.addEventListener('change', wireSpotify);
-  }
+  if (compact.addEventListener) compact.addEventListener('change', wireSpotify);
 
   /* ------------------------------------------
-     9. AGENDA "BOEK ME" (lege komende lijst)
-     ------------------------------------------ */
-  document.querySelectorAll('.agenda-leeg__knop').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var contact = document.getElementById('contact');
-      if (contact) contact.scrollIntoView();
-    });
-  });
-
-  /* ------------------------------------------
-     10. INSCHRIJVEN
-     Inline embed op #aanmelden. Geen ml('show'):
-     dat is de balk-popup (6erjz7, paused in dashboard).
-
-     FORMULIER: Embedded form aK1pC9 in de HTML.
-     Universal JS alleen laden als die embed op de pagina staat.
+     6. INSCHRIJVEN
+     Inline embed aK1pC9 op #aanmelden en /nieuwsbrief/. Geen ml('show'):
+     dat is de popup (6erjz7, paused in het dashboard).
+     Universal JS alleen laden als de embed op de pagina staat.
      ------------------------------------------ */
   var ML_ACCOUNT = '2547241';
 
-  if (document.querySelector('.ml-embedded')) {
-    if (!document.getElementById('mailerlite-universal')) {
-      window.ml = window.ml || function () {
-        (window.ml.q = window.ml.q || []).push(arguments);
-      };
-      window.ml('account', ML_ACCOUNT);
-      var s = document.createElement('script');
-      s.id = 'mailerlite-universal';
-      s.src = 'https://assets.mailerlite.com/js/universal.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
+  if (document.querySelector('.ml-embedded') && !document.getElementById('mailerlite-universal')) {
+    window.ml = window.ml || function () {
+      (window.ml.q = window.ml.q || []).push(arguments);
+    };
+    window.ml('account', ML_ACCOUNT);
+    var s = document.createElement('script');
+    s.id = 'mailerlite-universal';
+    s.src = 'https://assets.mailerlite.com/js/universal.js';
+    s.async = true;
+    document.head.appendChild(s);
   }
 })();

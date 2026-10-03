@@ -8,11 +8,11 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>">
 
   <!-- SEO -->
-  <title>all-electric — DJ uit Rotterdam</title>
+  <title>all-electric · DJ uit Rotterdam</title>
   <meta name="description" content="all-electric, DJ uit Rotterdam. UK Garage, Italo Disco, 90's bangers. Nieuwsbrief: Late 2 The Party.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="all-electric — DJ uit Rotterdam">
+  <meta property="og:title" content="all-electric · DJ uit Rotterdam">
   <meta property="og:description" content="DJ uit Rotterdam. Nieuwsbrief: Late 2 The Party.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://www.late2theparty.nl/">
@@ -21,12 +21,14 @@
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="all-electric — DJ uit Rotterdam">
+  <meta name="twitter:title" content="all-electric · DJ uit Rotterdam">
   <meta name="twitter:description" content="DJ uit Rotterdam. Nieuwsbrief: Late 2 The Party.">
   <meta name="twitter:image" content="https://www.late2theparty.nl/hero.jpg">
 
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#08080a">
 
+  <!-- Design system (letterlijk de export) en daarna de opmaak van deze site -->
+  <link rel="stylesheet" href="all-electric.css">
   <link rel="stylesheet" href="style.css">
 
   <!-- Structured data -->
@@ -45,293 +47,271 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#hoofdinhoud">Naar inhoud</a>
+  <a class="skip-link ae-btn ae-btn--outline ae-btn--sm" href="#hoofdinhoud">Naar inhoud</a>
 
-  <!-- Cursor glow (desktop only, moved by JS) -->
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
-  <!-- ============================================
-       STICKY NAVIGATIE
-       ============================================ -->
-  <nav class="site-nav" id="siteNav" aria-label="Hoofdnavigatie">
-    <div class="site-nav__inner">
-      <a href="#hero" class="site-nav__brand">all-electric</a>
-      <button type="button" class="site-nav__toggle" id="navToggle" aria-expanded="false" aria-controls="siteNavLinks">Menu</button>
-      <ul class="site-nav__links" id="siteNavLinks">
-        <li><a href="#over" class="site-nav__link">Over</a></li>
-        <li><a href="#nieuwsbrief" class="site-nav__link">Nieuwsbrief</a></li>
-        <li><a href="#agenda" class="site-nav__link">Agenda</a></li>
-        <li><a href="#luister" class="site-nav__link">Luister</a></li>
-        <li><a href="#faq" class="site-nav__link">FAQ</a></li>
-      </ul>
-      <a href="#contact" class="site-nav__cta">Boek</a>
-    </div>
+  <nav class="ae-nav ae-nav--sticky" aria-label="Hoofdmenu">
+    <a class="ae-nav__mark" href="#hero">all-electric</a>
+    <ul class="ae-nav__links">
+      <li><a class="ae-nav__link" href="#over">Over</a></li>
+      <li><a class="ae-nav__link" href="#nieuwsbrief">Nieuwsbrief</a></li>
+      <li><a class="ae-nav__link" href="#agenda">Agenda</a></li>
+      <li><a class="ae-nav__link" href="#luister">Luister</a></li>
+      <li><a class="ae-nav__link" href="#faq">FAQ</a></li>
+    </ul>
+    <a class="ae-btn ae-btn--primary ae-btn--sm ae-nav__cta" href="#contact">Boek</a>
   </nav>
 
   <main id="hoofdinhoud" tabindex="-1">
 
-  <!-- ============================================
-       HERO
-       ============================================ -->
-  <section class="hero" id="hero">
-    <div class="scanlines" aria-hidden="true"></div>
-    <div class="noise" aria-hidden="true"></div>
-    <div class="hero__content">
-      <h1 class="hero__title neon-text">all-electric</h1>
+  <!-- HERO -->
+  <section class="ae-hero" id="hero">
+    <div class="ae-hero__inner">
+      <h1 class="ae-hero__title">all-electric</h1>
 
-      <div class="hero__band">
-        <a href="https://open.spotify.com/playlist/3SSnkNHaZYFEnFsS2uNzvc?si=Rkkg8hDzQoSK9qMRm84tKg" class="hero__band-link" target="_blank" rel="noopener">UK in je Garage</a>
-        <a href="https://open.spotify.com/playlist/0wihgNsvUCuYe4vIcIEJX1?si=40QB4XUaSfa1ktWyz97FcA&pi=Adpx3Pd0QFGsA" class="hero__band-link" target="_blank" rel="noopener">Italo Disco Gezello</a>
-        <a href="https://open.spotify.com/playlist/6vOpbanOj8kMaIDSkkobG8?si=ckpwqJuDSN2oO83r56tTGg" class="hero__band-link" target="_blank" rel="noopener">90' Bangers</a>
-        <a href="https://open.spotify.com/playlist/5kQzJcHHc57Rl9Vzh4SRj6?si=ad35b520052c4538" class="hero__band-link" target="_blank" rel="noopener">Beukers &amp; zagers</a>
+      <div class="ae-pills">
+        <a class="ae-pill" href="https://open.spotify.com/playlist/3SSnkNHaZYFEnFsS2uNzvc?si=Rkkg8hDzQoSK9qMRm84tKg" target="_blank" rel="noopener">UK in je Garage</a>
+        <a class="ae-pill" href="https://open.spotify.com/playlist/0wihgNsvUCuYe4vIcIEJX1?si=40QB4XUaSfa1ktWyz97FcA&amp;pi=Adpx3Pd0QFGsA" target="_blank" rel="noopener">Italo Disco Gezello</a>
+        <a class="ae-pill" href="https://open.spotify.com/playlist/6vOpbanOj8kMaIDSkkobG8?si=ckpwqJuDSN2oO83r56tTGg" target="_blank" rel="noopener">90' Bangers</a>
+        <a class="ae-pill" href="https://open.spotify.com/playlist/5kQzJcHHc57Rl9Vzh4SRj6?si=ad35b520052c4538" target="_blank" rel="noopener">Beukers &amp; zagers</a>
       </div>
 
-      <a href="#aanmelden" class="btn btn--secondary">Ontvang de nieuwsbrief</a>
+      <a class="ae-btn ae-btn--outline" href="#aanmelden">Ontvang de nieuwsbrief</a>
+
+      <!-- Eerstvolgend optreden: main.js vult dit uit de eerste rij onder Komend in de agenda -->
+      <a class="ae-hero__next" id="heroNext" href="#agenda" hidden></a>
     </div>
   </section>
 
-  <!-- ============================================
-       OVER MIJ
-       ============================================ -->
-  <section class="section" id="over">
-    <div class="container">
-      <h2 class="section__heading neon-text">Over mij</h2>
-      <div class="about-grid">
+  <!-- OVER MIJ -->
+  <section class="page-section" id="over">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Over mij</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
 
-        <!-- FOTO: hero.jpg staat in docs/ (zelfde bestandsnaam houden) -->
-        <div class="photo-frame glow-pulse">
-          <img
-            src="hero.jpg"
-            alt="Portretfoto van all-electric"
-            class="photo-frame__img"
-            loading="lazy"
-            onerror="this.parentElement.classList.add('photo-frame--fallback')"
-          >
-          <div class="photo-frame__placeholder" aria-hidden="true">hero.jpg</div>
-        </div>
-
-        <div class="about-text fade-in">
-          <p class="lead">Iedereen kan zichzelf DJ noemen. Maar what does it take?</p>
-          <p>Het is algemeen bekend dat je om een succesvolle DJ te zijn vier eigenschappen moet bezitten:</p>
-
-          <!-- ISSUE TREE (animates on scroll) -->
-          <div class="skill-tree skill-tree--animate" aria-label="Issue tree: Succesvol DJ staat op rood. Looks, Imago en Clubervaring op groen, Techniek op rood en die blokkeert de uitkomst">
-            <div class="skill-tree__top">
-              <div class="skill-box skill-box--result skill-box--blocked glow-pulse glow-pulse--red">Succesvol DJ</div>
-            </div>
-            <div class="skill-tree__connector" aria-hidden="true">
-              <div class="connector-line connector-line--vertical"></div>
-              <div class="connector-line connector-line--horizontal"></div>
-              <div class="connector-line connector-line--drop connector-line--drop-1"></div>
-              <div class="connector-line connector-line--drop connector-line--drop-2"></div>
-              <div class="connector-line connector-line--drop connector-line--drop-3"></div>
-              <div class="connector-line connector-line--drop connector-line--drop-4"></div>
-            </div>
-            <div class="skill-tree__bottom">
-              <div class="skill-box skill-box--green">Looks</div>
-              <div class="skill-box skill-box--green">Imago</div>
-              <div class="skill-box skill-box--green">Clubervaring</div>
-              <div class="skill-box skill-box--red glow-pulse glow-pulse--red">Techniek</div>
-            </div>
-          </div>
-
-          <p>Met 3 van de 4 stoplichten op groen ben ik er bijna. Aan de laatste wordt hard gewerkt.</p>
-        </div>
+    <div class="split">
+      <!-- FOTO: hero.jpg staat in docs/ (zelfde bestandsnaam houden) -->
+      <div class="ae-photo ae-photo--rim ae-photo--maan split__photo">
+        <img src="hero.jpg" alt="Portretfoto van all-electric" loading="lazy">
       </div>
+
+      <div>
+        <p class="lead">Iedereen kan zichzelf DJ noemen. Maar what does it take?</p>
+        <p>Het is algemeen bekend dat je om een succesvolle DJ te zijn vier eigenschappen moet bezitten:</p>
+      </div>
+    </div>
+
+    <!-- STOPLICHTSCHEMA: de lampjes gaan aan bij het scrollen, TECHNIEK als laatste -->
+    <div class="ae-skill ae-skill--animate" aria-label="Stoplichtschema Succesvol DJ: Looks, Imago en Clubervaring op groen, Techniek op rood">
+      <div class="ae-skill__root">Succesvol DJ</div>
+      <span class="ae-skill__stem" aria-hidden="true"></span>
+      <span class="ae-skill__bar" aria-hidden="true"></span>
+      <ul class="ae-skill__row">
+        <li class="ae-skill__col">
+          <span class="ae-skill__stem ae-skill__stem--short" aria-hidden="true"></span>
+          <span class="ae-skill__box ae-skill__box--go">Looks <span class="ae-skill__status">groen</span></span>
+        </li>
+        <li class="ae-skill__col">
+          <span class="ae-skill__stem ae-skill__stem--short" aria-hidden="true"></span>
+          <span class="ae-skill__box ae-skill__box--go">Imago <span class="ae-skill__status">groen</span></span>
+        </li>
+        <li class="ae-skill__col">
+          <span class="ae-skill__stem ae-skill__stem--short" aria-hidden="true"></span>
+          <span class="ae-skill__box ae-skill__box--go">Clubervaring <span class="ae-skill__status">groen</span></span>
+        </li>
+        <li class="ae-skill__col">
+          <span class="ae-skill__stem ae-skill__stem--short" aria-hidden="true"></span>
+          <span class="ae-skill__box ae-skill__box--stop">Techniek <span class="ae-skill__status">rood</span></span>
+        </li>
+      </ul>
+      <p class="ae-skill__caption">Met 3 van de 4 stoplichten op groen ben ik er bijna. Aan de laatste wordt hard gewerkt.</p>
     </div>
   </section>
 
-  <!-- ============================================
-       NIEUWSBRIEF, LATE 2 THE PARTY
-       ============================================ -->
-  <section class="section section--alt" id="nieuwsbrief">
-    <div class="container">
-      <h2 class="section__heading section__heading--tight neon-text">Late 2 The Party</h2>
-      <p class="section__sub">De nieuwsbrief van all-electric &middot; Plaatjes leren draaien &middot; Lifestyle &middot; Kunst &middot; Nachtcultuur &middot; Mode</p>
+  <!-- NIEUWSBRIEF, LATE 2 THE PARTY -->
+  <section class="page-section page-section--media-end" id="nieuwsbrief">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Late 2 The Party</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+    <p class="muted">De nieuwsbrief van all-electric &middot; Plaatjes leren draaien &middot; Lifestyle &middot; Kunst &middot; Nachtcultuur &middot; Mode</p>
 
-      <div class="nb-promo fade-in">
-        <a class="nb-promo__beeld" href="nieuwsbrief/" aria-label="Naar het nieuwsbriefarchief">
-          <img src="collage.jpg" alt="all-electric achter de decks, drie foto's in duotoon" loading="lazy">
-        </a>
+    <div class="nb-promo">
+      <a class="ae-photo nb-promo__beeld" href="nieuwsbrief/" aria-label="Naar het nieuwsbriefarchief">
+        <img src="collage.jpg" alt="all-electric achter de decks, drie foto's in duotoon" loading="lazy">
+      </a>
 
-        <div class="nb-promo__tekst">
-          <p>Blijf op de hoogte, volg de ontwikkeling achter de decks, en laat je meenemen in plaatjes, zijstraatjes en praatjes.</p>
-          <div class="nb-form" id="aanmelden">
-            <div class="ml-embedded" data-form="aK1pC9"></div>
-          </div>
-          <p class="nb-promo__acties">
-            <a href="nieuwsbrief/" class="btn btn--secondary">Lees de brieven</a>
-          </p>
+      <div>
+        <p>Blijf op de hoogte, volg de ontwikkeling achter de decks, en laat je meenemen in plaatjes, zijstraatjes en praatjes.</p>
+        <div class="ae-formpanel" id="aanmelden">
+          <div class="ml-embedded" data-form="aK1pC9"></div>
         </div>
+        <p class="actions">
+          <a class="ae-btn ae-btn--outline" href="nieuwsbrief/">Lees de brieven</a>
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ============================================
-       ROTTERDAM
-       ============================================ -->
-  <section class="section" id="rotterdam">
-    <div class="container">
-      <h2 class="section__heading neon-text">Rotterdam</h2>
-      <div class="fade-in">
-        <p class="text-muted">Based in Schiebroek maar flexibel vanwege het bezit van een gezinsauto en bakfiets.</p>
-        <blockquote class="deelder-quote">
-          <p>Rotterdam, Schiedam, Vlaardingen, Maassluis.<br>Hoekie om, trappie af, gekkenhuis.</p>
-          <footer>— Jules Deelder</footer>
-        </blockquote>
+  <!-- ROTTERDAM -->
+  <section class="page-section" id="rotterdam">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Rotterdam</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+    <p class="muted">Based in Schiebroek maar flexibel vanwege het bezit van een gezinsauto en bakfiets.</p>
+    <blockquote class="ae-quote">
+      <p class="ae-quote__text">Rotterdam, Schiedam, Vlaardingen, Maassluis.<br>Hoekie om, trappie af, gekkenhuis.</p>
+      <cite class="ae-quote__source">Jules Deelder</cite>
+    </blockquote>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="page-section" id="agenda">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Agenda</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="ae-agenda">
+      <p class="ae-agenda__year">2026</p>
+
+      <div class="ae-tabs" role="tablist" aria-label="Komende en eerdere optredens">
+        <button type="button" class="ae-tab" id="tab-komend" role="tab" aria-selected="true" aria-controls="paneel-komend" data-paneel="komend">Komend</button>
+        <button type="button" class="ae-tab" id="tab-geweest" role="tab" aria-selected="false" aria-controls="paneel-geweest" data-paneel="geweest">Geweest</button>
+      </div>
+
+      <!--
+        NIEUWE DATUM: kopieer een <li> naar het juiste paneel.
+        datum (DD-MM) | naam van het optreden | vlag + plaats
+        De bovenste rij onder Komend verschijnt ook in de hero.
+      -->
+      <div class="agenda-paneel" id="paneel-komend" role="tabpanel" aria-labelledby="tab-komend">
+        <ul class="ae-agenda__list">
+          <li class="ae-agenda__row">
+            <span class="ae-agenda__date">17-10</span>
+            <span class="ae-agenda__name">Dubble Bubble Party &middot; B2B met piDJon</span>
+            <span class="ae-agenda__loc"><span aria-hidden="true">🇳🇱</span><span>Rotterdam</span></span>
+          </li>
+          <li class="ae-agenda__row">
+            <span class="ae-agenda__date">24-10</span>
+            <span class="ae-agenda__name">Tunes 4 my boy</span>
+            <span class="ae-agenda__loc"><span aria-hidden="true">🇳🇱</span><span>Rotterdam</span></span>
+          </li>
+        </ul>
+        <p class="ae-agenda__note">Nog ruimte in de planning &middot; <a href="#contact">boek gerust</a>.</p>
+      </div>
+
+      <div class="agenda-paneel" id="paneel-geweest" role="tabpanel" aria-labelledby="tab-geweest" hidden>
+        <ul class="ae-agenda__list">
+          <li class="ae-agenda__row">
+            <span class="ae-agenda__date">04-09</span>
+            <span class="ae-agenda__name">Gastset</span>
+            <span class="ae-agenda__loc"><span aria-hidden="true">🇫🇷</span><span>Franse Ardennen</span></span>
+          </li>
+          <li class="ae-agenda__row">
+            <span class="ae-agenda__date">15-08</span>
+            <span class="ae-agenda__name">TELLES B-DAY @ Caf&eacute; Soif</span>
+            <span class="ae-agenda__loc"><span aria-hidden="true">🇳🇱</span><span>Rotterdam</span></span>
+          </li>
+          <li class="ae-agenda__row">
+            <span class="ae-agenda__date">31-07</span>
+            <span class="ae-agenda__name">Pride Company Party</span>
+            <span class="ae-agenda__loc"><span aria-hidden="true">🇳🇱</span><span>Amsterdam</span></span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============================================
-       AGENDA
-       ============================================ -->
-  <section class="section section--alt" id="agenda">
-    <div class="container">
-      <h2 class="section__heading neon-text">Agenda</h2>
-
-      <!-- TOURDATA -->
-      <div class="agenda fade-in" aria-label="Agenda met optredens">
-        <p class="agenda__year">2026</p>
-
-        <div class="agenda-tabs" role="tablist" aria-label="Komende en eerdere optredens">
-          <button class="agenda-tab agenda-tab--on" id="tab-komend" role="tab"
-                  aria-selected="true" aria-controls="paneel-komend" data-paneel="komend">Komend</button>
-          <button class="agenda-tab" id="tab-geweest" role="tab"
-                  aria-selected="false" aria-controls="paneel-geweest" data-paneel="geweest">Geweest</button>
-        </div>
-
-        <!--
-          NIEUWE DATUM: kopieer een <li> naar het juiste paneel.
-          datum (DD-MM) | naam van het optreden | vlag + plaats
-        -->
-        <div class="agenda-paneel" id="paneel-komend" role="tabpanel" aria-labelledby="tab-komend">
-          <ul class="agenda__list">
-            <li class="agenda__row">
-              <span class="agenda__date">17-10</span>
-              <span class="agenda__event">Dubble Bubble Party &middot; B2B met piDJon</span>
-              <span class="agenda__location"><span class="agenda__flag">🇳🇱</span> Rotterdam</span>
-            </li>
-            <li class="agenda__row">
-              <span class="agenda__date">24-10</span>
-              <span class="agenda__event">Tunes 4 my boy</span>
-              <span class="agenda__location"><span class="agenda__flag">🇳🇱</span> Rotterdam</span>
-            </li>
-          </ul>
-          <p class="text-muted agenda__note">Nog ruimte in de planning &middot; <a href="#contact" class="nb-inline-link">boek gerust</a>.</p>
-        </div>
-
-        <div class="agenda-paneel" id="paneel-geweest" role="tabpanel" aria-labelledby="tab-geweest" hidden>
-          <ul class="agenda__list">
-            <li class="agenda__row">
-              <span class="agenda__date">04-09</span>
-              <span class="agenda__event">Gastset</span>
-              <span class="agenda__location"><span class="agenda__flag">🇫🇷</span> Franse Ardennen</span>
-            </li>
-            <li class="agenda__row">
-              <span class="agenda__date">15-08</span>
-              <span class="agenda__event">TELLES B-DAY @ Caf&eacute; Soif</span>
-              <span class="agenda__location"><span class="agenda__flag">🇳🇱</span> Rotterdam</span>
-            </li>
-            <li class="agenda__row">
-              <span class="agenda__date">31-07</span>
-              <span class="agenda__event">Pride Company Party</span>
-              <span class="agenda__location"><span class="agenda__flag">🏳️‍🌈</span> Amsterdam</span>
-            </li>
-          </ul>
-        </div>
+  <!-- LUISTER (Spotify) -->
+  <section class="page-section" id="luister">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Wat ik luister en draai</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+    <p class="muted">Een greep uit de lijsten.</p>
+    <div class="listen-grid">
+      <div class="listen-card" data-spotify="https://open.spotify.com/embed/playlist/6vOpbanOj8kMaIDSkkobG8?utm_source=generator&amp;theme=0" data-title="90' Bangers playlist">
+        <p class="listen-card__label">90' Bangers</p>
+        <button type="button" class="ae-btn ae-btn--outline ae-btn--sm listen-card__play">Luister op Spotify</button>
+      </div>
+      <div class="listen-card" data-spotify="https://open.spotify.com/embed/playlist/0wihgNsvUCuYe4vIcIEJX1?utm_source=generator&amp;theme=0" data-title="Italo Disco Gezello playlist">
+        <p class="listen-card__label">Italo Disco Gezello</p>
+        <button type="button" class="ae-btn ae-btn--outline ae-btn--sm listen-card__play">Luister op Spotify</button>
+      </div>
+      <div class="listen-card" data-spotify="https://open.spotify.com/embed/playlist/3SSnkNHaZYFEnFsS2uNzvc?utm_source=generator&amp;theme=0" data-title="UK in je Garage playlist">
+        <p class="listen-card__label">UK in je Garage</p>
+        <button type="button" class="ae-btn ae-btn--outline ae-btn--sm listen-card__play">Luister op Spotify</button>
+      </div>
+      <div class="listen-card" data-spotify="https://open.spotify.com/embed/playlist/5kQzJcHHc57Rl9Vzh4SRj6?utm_source=generator&amp;theme=0" data-title="Beukers en zagers playlist">
+        <p class="listen-card__label">Beukers &amp; zagers</p>
+        <button type="button" class="ae-btn ae-btn--outline ae-btn--sm listen-card__play">Luister op Spotify</button>
       </div>
     </div>
   </section>
 
-  <!-- ============================================
-       SPOTIFY EMBED
-       ============================================ -->
-  <section class="section" id="luister">
-    <div class="container">
-      <h2 class="section__heading section__heading--tight neon-text">Wat ik luister en draai</h2>
-      <p class="section__sub">Een greep uit de lijsten.</p>
-      <div class="spotify-grid fade-in">
-        <div class="spotify-embed" data-spotify="https://open.spotify.com/embed/playlist/6vOpbanOj8kMaIDSkkobG8?utm_source=generator&theme=0" data-title="90' Bangers playlist">
-          <p class="spotify-label">90' Bangers</p>
-          <button type="button" class="spotify-embed__play">Luister op Spotify</button>
-        </div>
-        <div class="spotify-embed" data-spotify="https://open.spotify.com/embed/playlist/0wihgNsvUCuYe4vIcIEJX1?utm_source=generator&theme=0" data-title="Italo Disco Gezello playlist">
-          <p class="spotify-label">Italo Disco Gezello</p>
-          <button type="button" class="spotify-embed__play">Luister op Spotify</button>
-        </div>
-        <div class="spotify-embed" data-spotify="https://open.spotify.com/embed/playlist/3SSnkNHaZYFEnFsS2uNzvc?utm_source=generator&theme=0" data-title="UK in je Garage playlist">
-          <p class="spotify-label">UK in je Garage</p>
-          <button type="button" class="spotify-embed__play">Luister op Spotify</button>
-        </div>
-        <div class="spotify-embed" data-spotify="https://open.spotify.com/embed/playlist/5kQzJcHHc57Rl9Vzh4SRj6?utm_source=generator&theme=0" data-title="Beukers en zagers playlist">
-          <p class="spotify-label">Beukers &amp; zagers</p>
-          <button type="button" class="spotify-embed__play">Luister op Spotify</button>
-        </div>
-      </div>
+  <!-- FAQ: <details> zodat het ook zonder JavaScript werkt -->
+  <section class="page-section" id="faq">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">FAQ</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+    <div class="ae-faq">
+
+      <details class="ae-faq__item">
+        <summary class="ae-faq__q"><span>Heb je nog een matje?</span><span class="ae-faq__plus" aria-hidden="true"></span></summary>
+        <div class="ae-faq__a"><p>Nee, maar als je tijdig boekt is er van alles mogelijk.</p></div>
+      </details>
+
+      <details class="ae-faq__item">
+        <summary class="ae-faq__q"><span>Ben je te volgen op socials?</span><span class="ae-faq__plus" aria-hidden="true"></span></summary>
+        <div class="ae-faq__a"><p>Jazeker, ik ben sinds 2013 actief op LinkedIn.</p></div>
+      </details>
+
+      <details class="ae-faq__item">
+        <summary class="ae-faq__q"><span>Waarom ben je zo laat begonnen? En wat zijn de implicaties voor je carrière?</span><span class="ae-faq__plus" aria-hidden="true"></span></summary>
+        <div class="ae-faq__a"><p>Was ik tien jaar eerder begonnen, dan waren er een hoop andere leuke dingen niet gebeurd. En had ik minder tijd gehad als consument een neus voor bangers te ontwikkelen. Als het gaat om implicaties voor carrière verwijs ik graag naar de schilder Henri Rousseau (1844-1910), bijgenaamd Le Douanier. Pas toen hij met pensioen was van zijn baan als douaneambtenaar begon hij serieus te schilderen. Zijn <a href="https://www.moma.org/collection/works/79277" target="_blank" rel="noopener">junglelandschappen</a> hangen nu in het MoMA.</p></div>
+      </details>
+
+      <details class="ae-faq__item">
+        <summary class="ae-faq__q"><span>Best uitgebreide website voor zo'n magere DJ-carrière.</span><span class="ae-faq__plus" aria-hidden="true"></span></summary>
+        <div class="ae-faq__a"><p>Naast DJ'en leer ik ook vibecoden.</p></div>
+      </details>
+
+      <details class="ae-faq__item">
+        <summary class="ae-faq__q"><span>Waar komen de Vengaboys eigenlijk vandaan?</span><span class="ae-faq__plus" aria-hidden="true"></span></summary>
+        <div class="ae-faq__a"><p>Rotterdam.</p></div>
+      </details>
+
     </div>
   </section>
 
-  <!-- ============================================
-       FAQ
-       ============================================ -->
-  <section class="section section--alt" id="faq">
-    <div class="container">
-      <h2 class="section__heading neon-text">FAQ</h2>
-      <div class="faq-list fade-in">
-
-        <details class="faq-item">
-          <summary class="faq-question">Heb je nog een matje?</summary>
-          <p class="faq-answer">Nee, maar als je tijdig boekt is er van alles mogelijk.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Ben je te volgen op socials?</summary>
-          <p class="faq-answer">Jazeker, ik ben sinds 2013 actief op LinkedIn.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Waarom ben je zo laat begonnen? En wat zijn de implicaties voor je carrière?</summary>
-          <p class="faq-answer">Was ik tien jaar eerder begonnen, dan waren er een hoop andere leuke dingen niet gebeurd. En had ik minder tijd gehad als consument een neus voor bangers te ontwikkelen. Als het gaat om implicaties voor carrière verwijs ik graag naar de schilder Henri Rousseau (1844-1910), bijgenaamd Le Douanier. Pas toen hij met pensioen was van zijn baan als douaneambtenaar begon hij serieus te schilderen. Zijn <a href="https://www.moma.org/collection/works/79277" class="nb-inline-link" target="_blank" rel="noopener">junglelandschappen</a> hangen nu in het MoMA.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Best uitgebreide website voor zo'n magere DJ-carrière.</summary>
-          <p class="faq-answer">Naast DJ'en leer ik ook vibecoden.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Waar komen de Vengaboys eigenlijk vandaan?</summary>
-          <p class="faq-answer">Rotterdam.</p>
-        </details>
-
-      </div>
+  <!-- BOEKEN -->
+  <section class="page-section" id="contact">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Boeken</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
     </div>
-  </section>
+    <p>Boekingen gaan via mail.</p>
+    <p class="muted">Snelle afstemming, ongemakkelijk in de omgang.</p>
 
-  <!-- ============================================
-       CONTACT / BOEKEN
-       ============================================ -->
-  <section class="section" id="contact">
-    <div class="container">
-      <h2 class="section__heading neon-text">Boeken</h2>
-      <div class="contact-block fade-in">
-        <p>Boekingen gaan via mail.</p>
-        <p class="text-muted">Snelle afstemming, ongemakkelijk in de omgang.</p>
-
-        <!-- MAILADRES AANPASSEN: verander alleen het adres achter "mailto:". -->
-        <a href="mailto:hallo@late2theparty.nl?subject=Boeking%20all-electric&body=Hoi%20Rik%2C%0A%0AIk%20wil%20je%20graag%20boeken.%20Alvast%20wat%20details%3A%0A%0ADatum%3A%20%0ALocatie%3A%20%0AType%20feest%3A%20%0AVerwachte%20tijd%2Fduur%3A%20%0ABudget%3A%20%0A%0AGroet%2C%0A" class="btn btn--primary" aria-label="Stuur een boekingsmail">Mail me</a>
-      </div>
-    </div>
+    <!-- MAILADRES AANPASSEN: verander alleen het adres achter "mailto:". -->
+    <p class="actions">
+      <a class="ae-btn ae-btn--primary" href="mailto:hallo@late2theparty.nl?subject=Boeking%20all-electric&amp;body=Hoi%20Rik%2C%0A%0AIk%20wil%20je%20graag%20boeken.%20Alvast%20wat%20details%3A%0A%0ADatum%3A%20%0ALocatie%3A%20%0AType%20feest%3A%20%0AVerwachte%20tijd%2Fduur%3A%20%0ABudget%3A%20%0A%0AGroet%2C%0A" aria-label="Stuur een boekingsmail">Mail me</a>
+    </p>
   </section>
 
   </main>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="footer">
-    <p>&copy; all-electric, Rotterdam &middot; <a href="nieuwsbrief/" class="nb-inline-link">Late 2 The Party</a> &middot; <a href="privacy/" class="nb-inline-link">Privacy</a></p>
+  <footer class="ae-footer">
+    <div class="ae-footer__inner">
+      <span>&copy; all-electric, Rotterdam</span>
+      <ul class="ae-footer__links">
+        <li><a href="nieuwsbrief/">Late 2 The Party</a></li>
+        <li><a href="privacy/">Privacy</a></li>
+      </ul>
+    </div>
   </footer>
 
   <script src="main.js"></script>
