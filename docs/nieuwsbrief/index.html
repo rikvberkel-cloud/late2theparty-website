@@ -6,7 +6,7 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>">
 
-  <title>Late 2 The Party, de nieuwsbrief | all-electric</title>
+  <title>Late 2 The Party, de nieuwsbrief · all-electric</title>
   <meta name="description" content="Archief van Late 2 The Party, de maandelijkse nieuwsbrief van all-electric over leren draaien, lifestyle, kunst, nachtcultuur en mode.">
   <link rel="canonical" href="https://www.late2theparty.nl/nieuwsbrief/">
   <meta property="og:title" content="Late 2 The Party, de nieuwsbrief">
@@ -19,96 +19,94 @@
   <meta name="twitter:title" content="Late 2 The Party, de nieuwsbrief">
   <meta name="twitter:description" content="Plaatjes leren draaien, lifestyle, kunst, nachtcultuur en mode.">
   <meta name="twitter:image" content="https://www.late2theparty.nl/collage.jpg">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#08080a">
 
+  <link rel="stylesheet" href="../all-electric.css">
   <link rel="stylesheet" href="../style.css">
 </head>
-<body class="nb-body">
-  <a class="skip-link" href="#hoofdinhoud">Naar inhoud</a>
+<body>
+  <a class="skip-link ae-btn ae-btn--outline ae-btn--sm" href="#hoofdinhoud">Naar inhoud</a>
 
-  <nav class="site-nav" id="siteNav" aria-label="Hoofdnavigatie">
-    <div class="site-nav__inner">
-      <a href="../" class="site-nav__brand">all-electric</a>
-      <button type="button" class="site-nav__toggle" id="navToggle" aria-expanded="false" aria-controls="siteNavLinks">Menu</button>
-      <ul class="site-nav__links" id="siteNavLinks">
-        <li><a href="../#over" class="site-nav__link">Over</a></li>
-        <li><a href="./" class="site-nav__link site-nav__link--active">Nieuwsbrief</a></li>
-        <li><a href="../#agenda" class="site-nav__link">Agenda</a></li>
-        <li><a href="../#luister" class="site-nav__link">Luister</a></li>
-        <li><a href="../#faq" class="site-nav__link">FAQ</a></li>
-      </ul>
-      <a href="../#contact" class="site-nav__cta">Boek</a>
-    </div>
+  <nav class="ae-nav ae-nav--sticky" aria-label="Hoofdmenu">
+    <a class="ae-nav__mark" href="../">all-electric</a>
+    <ul class="ae-nav__links">
+      <li><a class="ae-nav__link" href="../#over">Over</a></li>
+      <li><a class="ae-nav__link" href="./" aria-current="page">Nieuwsbrief</a></li>
+      <li><a class="ae-nav__link" href="../#agenda">Agenda</a></li>
+      <li><a class="ae-nav__link" href="../#luister">Luister</a></li>
+      <li><a class="ae-nav__link" href="../#faq">FAQ</a></li>
+    </ul>
+    <a class="ae-btn ae-btn--primary ae-btn--sm ae-nav__cta" href="../#contact">Boek</a>
   </nav>
 
   <main id="hoofdinhoud" tabindex="-1">
 
-  <!-- ============================================
-       MASTHEAD, in de stijl van de nieuwsbrief
-       ============================================ -->
-  <header class="nb-masthead">
-    <div class="container">
-      <p class="nb-masthead__kicker">all-electric</p>
-      <h1 class="nb-masthead__title">Late 2 The Party</h1>
-      <p class="nb-masthead__tags">Plaatjes leren draaien &middot; Lifestyle &middot; Kunst &middot; Nachtcultuur &middot; Mode</p>
+  <header class="ae-masthead">
+    <div class="ae-masthead__inner">
+      <h1 class="ae-masthead__title">Late 2 The Party</h1>
+      <span class="ae-masthead__rule" aria-hidden="true"></span>
+      <p class="ae-masthead__line">De nieuwsbrief van all-electric &middot; Plaatjes leren draaien &middot; Lifestyle &middot; Kunst &middot; Nachtcultuur &middot; Mode</p>
     </div>
   </header>
 
-  <section class="section">
-    <div class="container">
-
-      <p class="lead">Op de hoogte blijven?</p>
-      <p>Eén mail per maand. Volg hoe het draaien vordert, en laat je inspireren door plaatjes, nachtcultuur, kunst, mode en de rest.</p>
-
-      <div class="nb-form" id="aanmelden">
-        <div class="ml-embedded" data-form="aK1pC9"></div>
-      </div>
-
-      <!-- ============================================
-           ARCHIEF met tagfilter
-           ============================================ -->
-      <h2 class="nb-subkop" id="eerder">Eerder verschenen</h2>
-      <p class="nb-subkop__hint">Filter op onderwerp.</p>
-
-      <div class="nb-filters" role="group" aria-label="Filter edities op onderwerp">
-        <button class="nb-filter nb-filter--on" data-tag="alles" aria-pressed="true">Alles</button>
-        <button class="nb-filter" data-tag="draaien" aria-pressed="false">Plaatjes leren draaien</button>
-        <button class="nb-filter" data-tag="lifestyle" aria-pressed="false">Lifestyle</button>
-        <button class="nb-filter" data-tag="kunst" aria-pressed="false">Kunst</button>
-        <button class="nb-filter" data-tag="nachtcultuur" aria-pressed="false">Nachtcultuur</button>
-        <button class="nb-filter" data-tag="mode" aria-pressed="false">Mode</button>
-      </div>
-
-      <ul class="nb-list" id="nbList">
-
-        <!--
-          NIEUWE EDITIE TOEVOEGEN: kopieer dit hele <li> blok.
-          data-tags bepaalt op welke filters hij verschijnt.
-          De href is de webversie van de MailerLite-campagne.
-        -->
-        <li class="nb-item" data-tags="draaien kunst nachtcultuur">
-          <a class="nb-item__link" href="01/">
-            <span class="nb-item__meta">#01 &middot; 22 augustus 2026</span>
-            <h3 class="nb-item__title">DJ Rikkert010 x piDJon: giftige cocktail of succesformule?</h3>
-            <p class="nb-item__teaser">Eén keer het verkeerde deck op pauze. De issue tree legt uit waarom.</p>
-            <span class="nb-item__tags">
-              <span class="nb-tag">Plaatjes leren draaien</span>
-              <span class="nb-tag">Kunst</span>
-              <span class="nb-tag">Nachtcultuur</span>
-            </span>
-          </a>
-        </li>
-
-      </ul>
-      <p class="nb-empty" id="nbEmpty" hidden>Nog geen editie met dit onderwerp.</p>
-
+  <section class="page-section">
+    <div class="ae-formpanel" id="aanmelden">
+      <h2 class="ae-formpanel__title">Op de hoogte blijven?</h2>
+      <p class="ae-formpanel__intro">Eén mail per maand. Volg hoe het draaien vordert, en laat je inspireren door plaatjes, nachtcultuur, kunst, mode en de rest.</p>
+      <div class="ml-embedded" data-form="aK1pC9"></div>
     </div>
+  </section>
+
+  <!-- ARCHIEF met tagfilter -->
+  <section class="page-section" id="eerder">
+    <div class="ae-heading">
+      <h2 class="ae-heading__title">Eerder verschenen</h2>
+      <span class="ae-heading__rule" aria-hidden="true"></span>
+    </div>
+    <p class="muted">Filter op onderwerp.</p>
+
+    <div class="ae-pills nb-filters" role="group" aria-label="Filter edities op onderwerp">
+      <button type="button" class="ae-pill" data-tag="alles" aria-pressed="true">Alles</button>
+      <button type="button" class="ae-pill" data-tag="draaien" aria-pressed="false">Plaatjes leren draaien</button>
+      <button type="button" class="ae-pill" data-tag="lifestyle" aria-pressed="false">Lifestyle</button>
+      <button type="button" class="ae-pill" data-tag="kunst" aria-pressed="false">Kunst</button>
+      <button type="button" class="ae-pill" data-tag="nachtcultuur" aria-pressed="false">Nachtcultuur</button>
+      <button type="button" class="ae-pill" data-tag="mode" aria-pressed="false">Mode</button>
+    </div>
+
+    <ul class="nb-list" id="nbList">
+
+      <!--
+        NIEUWE EDITIE TOEVOEGEN: kopieer dit hele <li> blok.
+        data-tags bepaalt op welke filters hij verschijnt.
+        Datum als DD-MM-JJJJ.
+      -->
+      <li class="nb-item" data-tags="draaien kunst nachtcultuur">
+        <a class="nb-item__link" href="01/">
+          <span class="nb-item__meta">#01 &middot; 22-08-2026</span>
+          <h3 class="nb-item__title">DJ Rikkert010 x piDJon: giftige cocktail of succesformule?</h3>
+          <p class="nb-item__teaser">Eén keer het verkeerde deck op pauze. De issue tree legt uit waarom.</p>
+          <span class="ae-tags">
+            <span class="ae-tag">Plaatjes leren draaien</span>
+            <span class="ae-tag">Kunst</span>
+            <span class="ae-tag">Nachtcultuur</span>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+    <p class="muted nb-empty" id="nbEmpty" hidden>Nog geen editie met dit onderwerp.</p>
   </section>
 
   </main>
 
-  <footer class="footer">
-    <p>&copy; all-electric, Rotterdam &middot; Late 2 The Party &middot; <a href="../privacy/" class="nb-inline-link">Privacy</a></p>
+  <footer class="ae-footer">
+    <div class="ae-footer__inner">
+      <span>&copy; all-electric, Rotterdam &middot; Late 2 The Party</span>
+      <ul class="ae-footer__links">
+        <li><a href="../privacy/">Privacy</a></li>
+      </ul>
+    </div>
   </footer>
 
   <script src="../main.js"></script>

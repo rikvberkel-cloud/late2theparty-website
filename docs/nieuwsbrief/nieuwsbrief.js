@@ -1,10 +1,11 @@
 /* ============================================
-   Tagfilter voor het nieuwsbriefarchief
+   Tagfilter voor het nieuwsbriefarchief.
+   Filters zijn genre-pills (ae-pill); aria-pressed bepaalt de actieve.
    ============================================ */
 (function () {
   'use strict';
 
-  var knoppen = document.querySelectorAll('.nb-filter');
+  var knoppen = document.querySelectorAll('.ae-pill[data-tag]');
   var items = document.querySelectorAll('.nb-item');
   var leeg = document.getElementById('nbEmpty');
 
@@ -26,9 +27,7 @@
   knoppen.forEach(function (knop) {
     knop.addEventListener('click', function () {
       knoppen.forEach(function (k) {
-        var actief = k === knop;
-        k.classList.toggle('nb-filter--on', actief);
-        k.setAttribute('aria-pressed', actief ? 'true' : 'false');
+        k.setAttribute('aria-pressed', k === knop ? 'true' : 'false');
       });
       filter(knop.getAttribute('data-tag'));
     });
